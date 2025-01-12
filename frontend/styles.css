@@ -1,0 +1,99 @@
+body {
+  font-family: 'Roboto', Arial, sans-serif;
+  text-align: center;
+  background: linear-gradient(to bottom right, #6a11cb, #2575fc);
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+#app {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 30px;
+  background: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #2575fc;
+  margin-bottom: 20px;
+}
+
+h2, h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #2575fc;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: #6a11cb;
+  transform: scale(1.05);
+}
+
+input {
+  margin: 10px 0;
+  padding: 10px;
+  width: calc(100% - 20px);
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 14px;
+  color: #666;
+  text-align: left;
+}
+
+#login, #functions {
+  margin-top: 20px;
+}
+
+#walletAddress {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
+
+#functions div {
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  #app {
+    padding: 20px;
+    margin: 20px auto;
+  }
+
+  button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+
+  input {
+    padding: 8px;
+    font-size: 12px;
+  }
+}
