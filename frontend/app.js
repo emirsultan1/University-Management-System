@@ -199,6 +199,93 @@ async function getGrade() {
     alert('Failed to get grade. Check console for details.');
   }
 }
+// Helper Function to Fetch Course Details
+async function fetchCourseDetails(courseId) {
+  try {
+    const courseInfo = await contract.methods.getCourseInfo(courseId).call();
+    return `ID: ${courseInfo[0]}, Name: ${courseInfo[1]}`;
+  } catch (error) {
+    console.error(`Error fetching details for course ID ${courseId}:`, error);
+    return `ID: ${courseId} (Error fetching name)`;
+  }
+}
+
+// Get Course Info
+async function getCourseInfo() {
+  const courseId = parseInt(document.getElementById('courseInfoId').value);
+  if (isNaN(courseId) || courseId <= 0) {
+    alert('Please provide a valid Course ID.');
+    return;
+  }
+
+  try {
+    const courseInfo = await contract.methods.getCourseInfo(courseId).call();
+    document.getElementById('courseInfoOutput').textContent = `
+      Course ID: ${courseInfo[0]}, 
+      Name: ${courseInfo[1]}, 
+      Professor Address: ${courseInfo[2]}
+    `;
+  } catch (error) {
+    console.error('Error fetching course info:', error);
+    alert('Failed to fetch course info. Check the console for details.');
+  }
+}
+
+// Get Professor Courses with Names
+async function getProfessorCourses() {
+  const professorId = parseInt(document.getElementById('professorIdForCourses').value);
+  if (isNaN(professorId) || professorId <= 0) {
+    alert('Please provide a valid Professor ID.');
+    return;
+  }
+
+  try {
+    const courseIds = await contract.methods.getProfessorCourses(professorId).call();
+    const courseDetails = [];
+
+    for (const courseId of courseIds) {
+      const details = await fetchCourseDetails(courseId);
+      courseDetails.push(details);
+    }
+
+    document.getElementById('professorCoursesOutput').textContent =
+      courseDetails.length
+        ? `Courses: ${courseDetails.join('; ')}`
+        : 'No courses found for this professor.';
+  } catch (error) {
+    console.error('Error fetching professor courses:', error);
+    alert('Failed to fetch professor courses. Check the console for details.');
+  }
+}
+
+// Get Student Courses with Names
+async function getStudentCourses() {
+  const studentId = parseInt(document.getElementById('studentIdForCourses').value);
+  if (isNaN(studentId) || studentId <= 0) {
+    alert('Please provide a valid Student ID.');
+    return;
+  }
+
+  try {
+    const courseIds = await contract.methods.getStudentCourses(studentId).call();
+    const courseDetails = [];
+
+    for (const courseId of courseIds) {
+      const details = await fetchCourseDetails(courseId);
+      courseDetails.push(details);
+    }
+
+    document.getElementById('studentCoursesOutput').textContent =
+      courseDetails.length
+        ? `Courses: ${courseDetails.join('; ')}`
+        : 'No courses found for this student.';
+  } catch (error) {
+    console.error('Error fetching student courses:', error);
+    alert('Failed to fetch student courses. Check the console for details.');
+  }
+}
+
+
 
 // ----------------------------------------------------------
 // Event Listeners
@@ -217,6 +304,10 @@ function setupEventListeners() {
   document.getElementById('dropCourseBtn').addEventListener('click', dropCourse);
   document.getElementById('assignGradeBtn').addEventListener('click', assignGrade);
   document.getElementById('getGradeBtn').addEventListener('click', getGrade);
+  document.getElementById('getCourseInfoBtn').addEventListener('click', getCourseInfo);
+  document.getElementById('getProfessorCoursesBtn').addEventListener('click', getProfessorCourses);
+  document.getElementById('getStudentCoursesBtn').addEventListener('click', getStudentCourses);
+
 }
 
 window.onload = setupEventListeners;

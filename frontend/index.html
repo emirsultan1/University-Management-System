@@ -90,11 +90,6 @@
     </div>
 
     <!-- Student/Professor/General Actions -->
-    <!-- In your contract, some are admin-only, 
-         some are student-or-admin, 
-         some are professor, etc. 
-         We'll just make them accessible in the UI. 
-         REAL projects might hide certain forms if you’re not the right role. -->
     <div id="otherFunctions" style="display: none;">
       <h2>Other Actions</h2>
 
@@ -144,7 +139,7 @@
         <button id="assignGradeBtn" class="btn btn-warning mt-2">Assign Grade</button>
       </div>
 
-      <!-- getGrade -->
+      <!-- Get Grade -->
       <div class="my-3">
         <h3>Get Grade</h3>
         <div>
@@ -157,6 +152,39 @@
         </div>
         <button id="getGradeBtn" class="btn btn-secondary mt-2">Check Grade</button>
         <p id="showGrade"></p>
+      </div>
+
+      <!-- Get Course Info -->
+      <div class="my-3">
+        <h3>Get Course Info</h3>
+        <div>
+          <label for="courseInfoId">Course ID:</label>
+          <input type="number" id="courseInfoId" class="form-control" placeholder="Enter course ID">
+        </div>
+        <button id="getCourseInfoBtn" class="btn btn-secondary mt-2">Get Info</button>
+        <p id="courseInfoOutput"></p>
+      </div>
+
+      <!-- Get Professor Courses -->
+      <div class="my-3">
+        <h3>Get Professor Courses</h3>
+        <div>
+          <label for="professorIdForCourses">Professor ID:</label>
+          <input type="number" id="professorIdForCourses" class="form-control" placeholder="Enter professor ID">
+        </div>
+        <button id="getProfessorCoursesBtn" class="btn btn-secondary mt-2">Get Courses</button>
+        <p id="professorCoursesOutput"></p>
+      </div>
+
+      <!-- Get Student Courses -->
+      <div class="my-3">
+        <h3>Get Student Courses</h3>
+        <div>
+          <label for="studentIdForCourses">Student ID:</label>
+          <input type="number" id="studentIdForCourses" class="form-control" placeholder="Enter student ID">
+        </div>
+        <button id="getStudentCoursesBtn" class="btn btn-secondary mt-2">Get Courses</button>
+        <p id="studentCoursesOutput"></p>
       </div>
     </div>
   </div>
